@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\AppBase">
+      <UniqueIdentifier>{27e98af0-03f3-4d7a-8e5f-840601b54bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DX">
+      <UniqueIdentifier>{f4509573-5b49-4336-8f8b-63adba73d86d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Camera">
+      <UniqueIdentifier>{b35367ee-f52a-4dd4-9f14-f2449604ba4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Log">
+      <UniqueIdentifier>{f9756055-4547-43e5-9ff4-2b0e7a203c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\InPut">
+      <UniqueIdentifier>{9d8d50e2-5233-4d14-8e38-57389cf7422b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Util">
+      <UniqueIdentifier>{9e9a1fbb-84ee-4a1f-9ea1-47bdfde46e1c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AppBase\DxWindown.h">
+      <Filter>源文件\AppBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AppBase\Win32MsgBox.h">
+      <Filter>源文件\AppBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AppBase\DxApp.h">
+      <Filter>源文件\AppBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\D3DUtil.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Log\ErrorInfo.h">
+      <Filter>源文件\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DxGlobal\DxGlobal.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\camera\CamaraBase.h">
+      <Filter>源文件\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\camera\FPSCamera.h">
+      <Filter>源文件\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\InPut\DXInPutManager.h">
+      <Filter>源文件\InPut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\Util\FileOperation.h">
+      <Filter>源文件\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\D3DXMesh.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DXdefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\Terrain.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\SkyBox.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Game\GameApp.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AppBase\DxWindown.cpp">
+      <Filter>源文件\AppBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AppBase\Win32MsgBox.cpp">
+      <Filter>源文件\AppBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AppBase\DxApp.cpp">
+      <Filter>源文件\AppBase</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\D3DUitil.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Log\ErrorInfo.cpp">
+      <Filter>源文件\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DxGlobal\DxGlobal.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\camera\CamaraBase.cpp">
+      <Filter>源文件\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\camera\FPSCamera.cpp">
+      <Filter>源文件\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\InPut\DXInPutManager.cpp">
+      <Filter>源文件\InPut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\Util\FileOperation.cpp">
+      <Filter>源文件\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\D3DXMesh.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\Terrain.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\SkyBox.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Game\GameApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
