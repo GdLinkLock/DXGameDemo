@@ -31,6 +31,9 @@
     <Filter Include="源文件\Util">
       <UniqueIdentifier>{9e9a1fbb-84ee-4a1f-9ea1-47bdfde46e1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\math">
+      <UniqueIdentifier>{3eaa857d-f522-4d24-8073-b342c7351956}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
