@@ -16,7 +16,7 @@ public:
 
 	D3DXVECTOR3 GetPostion();
 	void SetPosition(const D3DXVECTOR3& newPos);
-	void SetRoation(float angle);
+	void SetYRoation(float angle);
 	void SetScaleFactor(float factor);
 	float GetScaleFactor();
 

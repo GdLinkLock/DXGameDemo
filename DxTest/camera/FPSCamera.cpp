@@ -175,10 +175,12 @@ void FPSCamera::SetLookAt(const D3DXVECTOR3& at)
 	D3DXVec3Normalize(&m_ViewAtDir, &m_ViewAtDir);//规范化 
 
 	//正交并规范化 
+	D3DXVec3Cross(&m_RightDir, &D3DXVECTOR3(0,1,0), &m_ViewAtDir);//第二个参数必须是0.1.0 这样才能保证摄像机不会滚动
+	D3DXVec3Normalize(&m_RightDir, &m_RightDir);
+
 	D3DXVec3Cross(&m_UpDir, &m_ViewAtDir, &m_RightDir);
 	D3DXVec3Normalize(&m_UpDir, &m_UpDir);
-	D3DXVec3Cross(&m_RightDir, &m_UpDir, &m_ViewAtDir);
-	D3DXVec3Normalize(&m_RightDir, &m_RightDir);
+	
 }
 void FPSCamera::SetLookAtDir(const D3DXVECTOR3& dir)
 {
@@ -220,7 +222,7 @@ void FPSCamera::RotationUp(float degree)
 {
 	D3DXMATRIX T;
 	//D3DXMatrixRotationAxis(&T,&m_UpDir,degree);
-	D3DXMatrixRotationY(&T,degree);
+	D3DXMatrixRotationY(&T,degree); //修改旋转轴，这里是Y轴，不能是updir，因为经过一些运动后updir可能不再是0.1.0
 	D3DXVec3TransformCoord(&m_RightDir,&m_RightDir,&T);
 	D3DXVec3TransformCoord(&m_ViewAtDir,&m_ViewAtDir,&T);
 	m_TargitPos=m_ViewAtDir*D3DXVec3Length(&m_Pos);

@@ -94,7 +94,7 @@ bool D3DXMesh::CreateMesh(IDirect3DDevice9* pDevice,const char* meshName)
 
 void D3DXMesh::DrawMesh(IDirect3DDevice9* pDevice)
 {
-	this->SetMatWorld(this->GetPostion(),m_fYangle,1.0f);
+	//this->SetMatWorld(this->GetPostion(),m_fYangle,1.0f);
 
 	//¿ªÆôÕÕÃ÷
 	pDevice->SetRenderState(D3DRS_LIGHTING,true);
@@ -137,7 +137,7 @@ D3DXVECTOR3 D3DXMesh::GetPostion()
 	 return D3DXVECTOR3(m_MatWorld._41,m_MatWorld._42,m_MatWorld._43);
 }
 
-void D3DXMesh::SetRoation(float angle)
+void D3DXMesh::SetYRoation(float angle)
 {
 	SetMatWorld(this->GetPostion(),angle,1.0f);
 }

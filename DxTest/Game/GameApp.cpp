@@ -184,7 +184,8 @@ void TestApp::UpdateCamera(float interval)
 			m_MeshTank->SetPosition(pos);
 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
 			CamPos.x -=delta;
-			m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle() + D3DX_PI/2);
+			//m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle() + D3DX_PI/2);
+			m_MeshTank->SetYRoation(/*m_FPSCamera->GetYAngle() + */D3DX_PI/2);
 			m_FPSCamera->SetPos(CamPos);
 			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
 			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
@@ -195,8 +196,8 @@ void TestApp::UpdateCamera(float interval)
 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
 			pos.x += delta;
 			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle() - D3DX_PI/2);
-
+			//m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle() - D3DX_PI/2);
+			m_MeshTank->SetYRoation(/*m_FPSCamera->GetYAngle()*/ -D3DX_PI/2);
 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
 			CamPos.x +=delta;
 			m_FPSCamera->SetPos(CamPos);
@@ -209,8 +210,8 @@ void TestApp::UpdateCamera(float interval)
 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
 			pos.z += delta;
 			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle()  + D3DX_PI);
-
+			//m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle()  + D3DX_PI);
+			m_MeshTank->SetYRoation(/*m_FPSCamera->GetYAngle() + */D3DX_PI);
 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
 			CamPos.z +=delta;
 			m_FPSCamera->SetPos(CamPos);
@@ -223,8 +224,8 @@ void TestApp::UpdateCamera(float interval)
 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
 			pos.z -= delta;
 			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle());
-
+			//m_MeshTank->SetYAngle(m_FPSCamera->GetYAngle());
+			m_MeshTank->SetYRoation(/*m_FPSCamera->GetYAngle()*/0);
 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
 			CamPos.z -=delta;
 			m_FPSCamera->SetPos(CamPos);
