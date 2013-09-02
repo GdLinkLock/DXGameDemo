@@ -144,7 +144,7 @@ int FPSCamera::OnkeyDown(unsigned int key)
 
 void FPSCamera::GetViewMatrix(D3DXMATRIX* V)
 {
-	// Keep camera's axes orthogonal to eachother
+	
 	D3DXVec3Normalize(&m_ViewAtDir, &m_ViewAtDir);
 
 	D3DXVec3Cross(&m_UpDir, &m_ViewAtDir, &m_RightDir);
@@ -153,7 +153,7 @@ void FPSCamera::GetViewMatrix(D3DXMATRIX* V)
 	D3DXVec3Cross(&m_RightDir, &m_UpDir, &m_ViewAtDir);
 	D3DXVec3Normalize(&m_RightDir, &m_RightDir);
 
-	// Build the view matrix:
+	
 	float x = -D3DXVec3Dot(&m_RightDir, &m_Pos);
 	float y = -D3DXVec3Dot(&m_UpDir, &m_Pos);
 	float z = -D3DXVec3Dot(&m_ViewAtDir, &m_Pos);
@@ -219,7 +219,8 @@ void FPSCamera::RotationRight(float degree)
 void FPSCamera::RotationUp(float degree)
 {
 	D3DXMATRIX T;
-	D3DXMatrixRotationAxis(&T,&m_UpDir,degree);
+	//D3DXMatrixRotationAxis(&T,&m_UpDir,degree);
+	D3DXMatrixRotationY(&T,degree);
 	D3DXVec3TransformCoord(&m_RightDir,&m_RightDir,&T);
 	D3DXVec3TransformCoord(&m_ViewAtDir,&m_ViewAtDir,&T);
 	m_TargitPos=m_ViewAtDir*D3DXVec3Length(&m_Pos);
