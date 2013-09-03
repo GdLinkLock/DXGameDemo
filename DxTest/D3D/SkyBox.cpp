@@ -77,11 +77,16 @@ bool SkyBox::LoadSkyTextureFromFile(const char* front,const char* back,const cha
 	D3DXCreateTextureFromFile(m_pDevice,back,&m_TexArray[1]);
 	D3DXCreateTextureFromFile(m_pDevice,left,&m_TexArray[2]);
 	D3DXCreateTextureFromFile(m_pDevice,right,&m_TexArray[3]);
-	D3DXCreateTextureFromFile(m_pDevice,right,&m_TexArray[4]);
+	D3DXCreateTextureFromFile(m_pDevice,top,&m_TexArray[4]);
 	return true;
 }
 
-void SkyBox::RenderSkyBox(D3DXMATRIX matrix)
+void SkyBox::SetMatWorld(D3DXMATRIX mat)
+{
+	m_matWorld=mat;
+}
+
+void SkyBox::RenderSkyBox()
 {
 	m_pDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
 	m_pDevice->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_SELECTARG1 );//将纹理颜色混合的第一个参数用于输出
@@ -95,7 +100,7 @@ void SkyBox::RenderSkyBox(D3DXMATRIX matrix)
 	m_pDevice->SetSamplerState(0, D3DSAMP_MAGFILTER,D3DTEXF_LINEAR);
 
 	//
-	m_pDevice->SetTransform(D3DTS_WORLD,&matrix);
+	m_pDevice->SetTransform(D3DTS_WORLD,&m_matWorld);
 	m_pDevice->SetStreamSource(0,m_pVB,0,sizeof(tSkyBoxVertex));//将包含几何信息的顶点和渲染流水线绑定
 	m_pDevice->SetFVF(tSkyBoxVertex::FVF);
 

@@ -9,8 +9,9 @@ public:
 
 	bool InitSkyBox(float length);
 	bool LoadSkyTextureFromFile(const char* front,const char* back,const char* left,const char* right,const char* top);
-	void RenderSkyBox(D3DXMATRIX matrix);
+	void RenderSkyBox();
 
+	void SetMatWorld(D3DXMATRIX mat);
 public:
 	struct tSkyBoxVertex
 	{

@@ -19,8 +19,11 @@ public:
 	const D3DXVECTOR3& GetTarget(){return m_TargitPos;}
 	const D3DXVECTOR3& GetUp(){return m_UpDir;}
 	const D3DXVECTOR3& GetViewAtDir(){return m_ViewAtDir;}//返回当前的观察向量
+	
 	void GetViewMatrix(D3DXMATRIX* V);//返回取景变换矩阵
-
+	void SetViewMatrix(IDirect3DDevice9* device);
+	void SetProjMatrix(IDirect3DDevice9* device);
+	
 	void UpdateFrame(float interval);
 
 	//返回相机绕Y轴旋转

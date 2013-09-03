@@ -158,6 +158,11 @@ void FPSCamera::GetViewMatrix(D3DXMATRIX* V)
 	float y = -D3DXVec3Dot(&m_UpDir, &m_Pos);
 	float z = -D3DXVec3Dot(&m_ViewAtDir, &m_Pos);
 
+	//rx   ux   dx   0
+	//ry   uy   dy   0
+	//rz   uz   dz   0
+	//-p.r -p.u -p.d 1
+
 	(*V)(0,0) =m_RightDir.x; (*V)(0, 1) =m_UpDir.x; (*V)(0, 2) = m_ViewAtDir.x; (*V)(0, 3) = 0.0f;
 	(*V)(1,0) =m_RightDir.y; (*V)(1, 1) =m_UpDir.y; (*V)(1, 2) = m_ViewAtDir.y; (*V)(1, 3) = 0.0f;
 	(*V)(2,0) =m_RightDir.z; (*V)(2, 1) =m_UpDir.z; (*V)(2, 2) = m_ViewAtDir.z; (*V)(2, 3) = 0.0f;
@@ -226,4 +231,23 @@ void FPSCamera::RotationUp(float degree)
 	D3DXVec3TransformCoord(&m_RightDir,&m_RightDir,&T);
 	D3DXVec3TransformCoord(&m_ViewAtDir,&m_ViewAtDir,&T);
 	m_TargitPos=m_ViewAtDir*D3DXVec3Length(&m_Pos);
+}
+
+void FPSCamera::SetViewMatrix(IDirect3DDevice9* device)
+{
+	D3DXMATRIX V ;
+	this->GetViewMatrix(&V);
+	device->SetTransform(D3DTS_VIEW, &V);
+}
+
+void FPSCamera::SetProjMatrix(IDirect3DDevice9* device)
+{
+	D3DXMATRIX proj;
+	D3DXMatrixPerspectiveFovLH(
+		&proj,
+		D3DX_PI * 0.5f, // 90 - degree
+		(float)1024 / (float)768,
+		1.0f,
+		150000.0f);
+	device->SetTransform(D3DTS_PROJECTION, &proj);
 }
