@@ -21,14 +21,12 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -96,7 +94,6 @@
     <ClInclude Include="..\D3D\D3DUtil.h" />
     <ClInclude Include="..\D3D\D3DXMesh.h" />
     <ClInclude Include="..\D3D\SkyBox.h" />
-    <ClInclude Include="..\D3D\SkyBoxClass.h" />
     <ClInclude Include="..\D3D\Terrain.h" />
     <ClInclude Include="..\DxGlobal\DxGlobal.h" />
     <ClInclude Include="..\Game\GameApp.h" />
@@ -116,7 +113,6 @@
     <ClCompile Include="..\D3D\D3DUitil.cpp" />
     <ClCompile Include="..\D3D\D3DXMesh.cpp" />
     <ClCompile Include="..\D3D\SkyBox.cpp" />
-    <ClCompile Include="..\D3D\SkyBoxClass.cpp" />
     <ClCompile Include="..\D3D\Terrain.cpp" />
     <ClCompile Include="..\DxGlobal\DxGlobal.cpp" />
     <ClCompile Include="..\Game\GameApp.cpp" />
