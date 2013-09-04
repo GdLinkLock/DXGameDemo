@@ -21,6 +21,9 @@ public:
 
 	float GetHeight(float x,float z);
 	float GetHeightByRowCol(int row,int col);
+
+	//…Ë÷√ÃÓ≥‰ƒ£ Ω
+	void SetRenderFrame(bool frame);
 private:
 
 	IDirect3DDevice9* m_pDevice;
@@ -42,6 +45,8 @@ private:
 	std::vector<float> m_HeightInfo;
 
 	D3DXMATRIX m_WorldMat;
+
+	bool bWireFrame;
 public:
 
 

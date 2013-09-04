@@ -182,3 +182,20 @@ D3DLIGHT9 D3D::InitSpotLight(D3DXVECTOR3* position, D3DXVECTOR3* direction, D3DX
  {
 	 return a - (a*t) + (b*t);
  }
+
+ float D3D::GetFps(float delta)
+ {
+	 static float fps=0;
+	 static float escape=0;
+	 static int frame=0;
+
+	 frame++;
+	 escape +=delta*0.001;
+	 if (escape >= 1.0)
+	 {
+		 fps=(float)frame/escape;
+		 frame=0;
+		 escape=0;
+	 }
+	 return fps;
+ }

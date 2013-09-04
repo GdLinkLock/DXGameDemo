@@ -90,7 +90,7 @@
     <ClInclude Include="..\Game\GameApp.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\D3D\SkyBoxClass.h">
+    <ClInclude Include="..\D3D\DXFront.h">
       <Filter>源文件\DX</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,7 +140,7 @@
     <ClCompile Include="..\Game\GameApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\D3D\SkyBoxClass.cpp">
+    <ClCompile Include="..\D3D\DXFront.cpp">
       <Filter>源文件\DX</Filter>
     </ClCompile>
   </ItemGroup>

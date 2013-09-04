@@ -11,6 +11,7 @@
 #include "../camera/camera.h"
 #include "../D3D/SkyBox.h"
 #include "../D3D/Terrain.h"
+#include "../D3D/DXFront.h"
 #define  WINDOW_WIDTH 1024
 #define  WINDOW_HIGHT 768
 
@@ -24,10 +25,7 @@ public:
 	std::tr1::shared_ptr<SkyBox>  m_SkyBox;
 	std::tr1::shared_ptr<Terrian> m_Terrain;
 	D3DLIGHT9 light;
-	//floor
-	IDirect3DTexture9* mFloorTex;
-	IDirect3DVertexBuffer9* mFloorVB;
-
+	std::tr1::shared_ptr<DXText> m_Text;
 	//----------------------------------------------------
 public:
 	std::tr1::shared_ptr<FPSCamera> m_FPSCamera;
@@ -49,6 +47,7 @@ public:
 public:
 	void InitApp();
 
+	int OnWndSize(DxSizeEvent& e);
 
 	void ShutDownApp()
 	{

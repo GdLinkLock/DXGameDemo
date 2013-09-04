@@ -137,4 +137,6 @@ namespace D3D
 	void DrawCoord();
 
 	float Lerp(float a, float b, float t);
+
+	float GetFps(float delta);
 }

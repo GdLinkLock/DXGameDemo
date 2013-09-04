@@ -33,6 +33,14 @@ void TestApp::UpdateCamera(float interval)
 				m_FPSCamera->SetLookAt(pos);
 				break;
 			}
+		case VK_NUMPAD0:
+			{
+			
+				static bool bframe=true;
+				bframe = !bframe;
+				m_Terrain->SetRenderFrame(bframe);
+				break;
+			}
 		default:
 			return 0;
 		}
@@ -47,16 +55,17 @@ void TestApp::UpdateCamera(float interval)
 		m_pWnd->GetMsgProc()=std::tr1::bind(&DXInputManager::HandleMsg,GetGlobalInputManager(),std::placeholders::_1,std::placeholders::_2,std::placeholders::_3);
 		KeyCallback kcb=std::tr1::bind(&TestApp::OnkeyDown,this,std::placeholders::_1);
 		m_pWnd->RigisterKeyDown(kcb);
-
+		WndSizeCallBack wcb=std::tr1::bind(&TestApp::OnWndSize,this,std::placeholders::_1);
+		m_pWnd->RigesterWndSizeEvent(wcb);
 		//==============================================================================
+		m_Text=std::make_shared<DXText>(Device);
+
 		m_Terrain=std::make_shared<Terrian>(Device);
 		m_Terrain->LoadTerrainFromFile("heighmap.raw","terrain_grass.jpg");
 		m_Terrain->InitTerrain(300,300, 20.0f, 0.3f);
 
-
 		m_DXMesh=std::make_shared<D3DXMesh>();
 		m_DXMesh->CreateMesh(Device,"castle400.X");
-		//m_DXMesh->SetScaleFactor(100);
 		float hCastle=m_Terrain->GetHeight(300,500);
 		m_DXMesh->SetPosition(D3DXVECTOR3(-100,450+hCastle,600));
 
@@ -114,8 +123,12 @@ void TestApp::UpdateCamera(float interval)
 
 
 		m_Terrain->RenderTerrain();
+		float clor[3]={255,0,0};
+		float fps=D3D::GetFps(timeDelta);
+		m_Text->PushText(0,0,clor,"FPS:%.0f",fps);
+		m_Text->RenderText();
 
-
+		DXWriteConsol(CC_RED,"Fps=%f",D3D::GetFps(timeDelta));
 
 		//绘制天空
 		D3DXMATRIX matSky,matTransSky,matRotSky;
@@ -246,5 +259,12 @@ void TestApp::UpdateCamera(float interval)
 			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
 		}
 		
+		
+	}
 
+	int TestApp::OnWndSize(DxSizeEvent& e)
+	{
+		//PopupError("width=%d",e.w);
+		//设置backbuffer和viewport
+		return 1;
 	}

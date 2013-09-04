@@ -17,6 +17,8 @@ Terrian::Terrian(IDirect3DDevice9* pDevice)
 	cellSpace = 0.0f;
 	heightScale = 0.0f;
 	D3DXMatrixIdentity(&m_WorldMat);
+
+	bWireFrame=false;
 }
 Terrian::~Terrian()
 {
@@ -150,6 +152,13 @@ void Terrian::RenderTerrain()
 	m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,numVertexes,0,numVertexes*2);
 	m_pDevice->SetRenderState(D3DRS_LIGHTING,true);
 	m_pDevice->SetTexture(0,0);
+
+	if (bWireFrame)
+	{
+		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);
+		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,numVertexes,0,numVertexes*2);
+		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_SOLID);
+	}
 }
 
 float Terrian::GetHeight(float x,float z)
@@ -202,4 +211,9 @@ float Terrian::GetHeightByRowCol(int row,int col)
 {
 	int idx=row*numCellPerRow+col;
 	return m_HeightInfo[idx];
+}
+
+void Terrian::SetRenderFrame(bool frame)
+{
+	bWireFrame=frame;
 }
