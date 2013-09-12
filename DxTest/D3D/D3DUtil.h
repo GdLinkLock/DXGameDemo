@@ -137,4 +137,14 @@ namespace D3D
 	void DrawCoord();
 
 	float Lerp(float a, float b, float t);
+
+	float GetFps(float delta);
+
+	DWORD F2Dw(float fval);
+
+	float GetRandomFloat(float min,float max);
+
+	int GetRandomInt(int min,int max);
+
+	D3DXVECTOR3 GetRandomVec3(D3DXVECTOR3 min,D3DXVECTOR3 max);
 }

@@ -1,5 +1,7 @@
 #include "Terrain.h"
 #include "../Log/ErrorInfo.h"
+#include "GlobalConfig.h"
+#include "../DxGlobal/DxGlobal.h"
 
 Terrian::Terrian(IDirect3DDevice9* pDevice)
 {
@@ -17,6 +19,8 @@ Terrian::Terrian(IDirect3DDevice9* pDevice)
 	cellSpace = 0.0f;
 	heightScale = 0.0f;
 	D3DXMatrixIdentity(&m_WorldMat);
+
+	bWireFrame=false;
 }
 Terrian::~Terrian()
 {
@@ -74,6 +78,7 @@ bool Terrian::InitTerrain(int row,int col,float space,float scale)
 	HRESULT hr;
 	hr=m_pDevice->CreateVertexBuffer(numVertexes*sizeof(tTerrainVertex),D3DUSAGE_WRITEONLY,
 										tTerrainVertex::FVF,D3DPOOL_MANAGED,&m_pVB,0);
+	grunTimeInfo.vbSize+=numVertexes*sizeof(tTerrainVertex);
 	if (FAILED(hr))
 	{
 		PopupError("Create VB in Terrain failed!");
@@ -104,6 +109,8 @@ bool Terrian::InitTerrain(int row,int col,float space,float scale)
 	//创建索引缓存，加锁，访问，unlock
 	//缓存大小=顶点数*6=三角形的数量*3；加入每行两个顶点，每列两个顶点，那么一共是四个矩形也就是六个三角形，共需要18个顶点索引
 	hr=m_pDevice->CreateIndexBuffer(numVertexes * 6 * sizeof(WORD),D3DUSAGE_WRITEONLY,D3DFMT_INDEX16,D3DPOOL_MANAGED,&m_pIB,0);
+	grunTimeInfo.ibSize +=numVertexes * 6 * sizeof(WORD);
+	
 	if (FAILED(hr))
 	{
 		PopupError("Create index in Terrain failed!");
@@ -147,9 +154,30 @@ void Terrian::RenderTerrain()
 	//光照，mat,draw
 	m_pDevice->SetRenderState(D3DRS_LIGHTING,false);
 	m_pDevice->SetTransform(D3DTS_WORLD,&m_WorldMat);
+
+// 	if (GlobalConfig::EnableWireFrame())
+// 		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);
 	m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,numVertexes,0,numVertexes*2);
+	grunTimeInfo.fTriangleNum += numVertexes*2;
+	grunTimeInfo.aTriangleNum += numVertexes*2;
+	grunTimeInfo.fDrawCoreNum++;
+	grunTimeInfo.aDrawCoreNum++;
+	// 	if (GlobalConfig::EnableWireFrame())
+// 		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_SOLID);
+
+	
 	m_pDevice->SetRenderState(D3DRS_LIGHTING,true);
 	m_pDevice->SetTexture(0,0);
+
+	if (GlobalConfig::EnableWireFrame())
+	{
+		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);
+		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,numVertexes,0,numVertexes*2);
+		m_pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_SOLID);
+	}
+
+
+	
 }
 
 float Terrian::GetHeight(float x,float z)
@@ -202,4 +230,9 @@ float Terrian::GetHeightByRowCol(int row,int col)
 {
 	int idx=row*numCellPerRow+col;
 	return m_HeightInfo[idx];
+}
+
+void Terrian::SetRenderFrame(bool frame)
+{
+	bWireFrame=frame;
 }

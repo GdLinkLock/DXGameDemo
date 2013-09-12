@@ -1,6 +1,8 @@
 #include "D3DXMesh.h"
 #include "../Log/ErrorInfo.h"
 #include <algorithm>
+#include "GlobalConfig.h"
+#include "../DxGlobal/DxGlobal.h"
 
 D3DXMesh::D3DXMesh():m_Mesh(0)
 {
@@ -88,6 +90,7 @@ bool D3DXMesh::CreateMesh(IDirect3DDevice9* pDevice,const char* meshName)
 	pDevice->SetSamplerState(0,D3DSAMP_MINFILTER,D3DTEXF_LINEAR);
 	pDevice->SetSamplerState(0,D3DSAMP_MIPFILTER,D3DTEXF_POINT);
 
+	grunTimeInfo.vbSize += m_Mesh->GetNumVertices()*m_Mesh->GetNumBytesPerVertex();
 	//
 	return true;
 }
@@ -114,12 +117,26 @@ void D3DXMesh::DrawMesh(IDirect3DDevice9* pDevice)
  	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
  	pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
 
+	if (GlobalConfig::EnableWireFrame())
+		pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);
+	
 	for (int i=0;i<m_Materails.size();i++)
 	{
 		pDevice->SetMaterial(&m_Materails[i]);
 		pDevice->SetTexture(0,m_Textures[i]);
 		m_Mesh->DrawSubset(i);
+
+		grunTimeInfo.aDrawCoreNum++;
+		grunTimeInfo.fDrawCoreNum++;
 	}
+
+	grunTimeInfo.fTriangleNum +=m_Mesh->GetNumFaces();
+	grunTimeInfo.aTriangleNum+=m_Mesh->GetNumFaces();
+
+
+	if (GlobalConfig::EnableWireFrame())
+		pDevice->SetRenderState(D3DRS_FILLMODE,D3DFILL_SOLID);
+	
 	//禁用照明效果
 	pDevice->SetRenderState( D3DRS_LIGHTING, FALSE ); 
 }

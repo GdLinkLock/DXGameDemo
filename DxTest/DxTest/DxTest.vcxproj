@@ -20,11 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -54,7 +56,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./;../DXSDK/Include;../DxGlobal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\AppBase;./;../DXSDK/Include;../DxGlobal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -86,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="..\AppBase\DxApp.h" />
     <ClInclude Include="..\AppBase\DxWindown.h" />
+    <ClInclude Include="..\AppBase\GlobalConfig.h" />
     <ClInclude Include="..\AppBase\Win32MsgBox.h" />
     <ClInclude Include="..\camera\CamaraBase.h" />
     <ClInclude Include="..\camera\FPSCamera.h" />
@@ -93,6 +96,10 @@
     <ClInclude Include="..\CommenCode\Util\FileOperation.h" />
     <ClInclude Include="..\D3D\D3DUtil.h" />
     <ClInclude Include="..\D3D\D3DXMesh.h" />
+    <ClInclude Include="..\D3D\DXFront.h" />
+    <ClInclude Include="..\D3D\Particle.h" />
+    <ClInclude Include="..\D3D\RenderInfo.h" />
+    <ClInclude Include="..\D3D\RunTimeInfo.h" />
     <ClInclude Include="..\D3D\SkyBox.h" />
     <ClInclude Include="..\D3D\Terrain.h" />
     <ClInclude Include="..\DxGlobal\DxGlobal.h" />
@@ -105,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="..\AppBase\DxApp.cpp" />
     <ClCompile Include="..\AppBase\DxWindown.cpp" />
+    <ClCompile Include="..\AppBase\GlobalConfig.cpp" />
     <ClCompile Include="..\AppBase\Win32MsgBox.cpp" />
     <ClCompile Include="..\camera\CamaraBase.cpp" />
     <ClCompile Include="..\camera\FPSCamera.cpp" />
@@ -112,6 +120,8 @@
     <ClCompile Include="..\CommenCode\Util\FileOperation.cpp" />
     <ClCompile Include="..\D3D\D3DUitil.cpp" />
     <ClCompile Include="..\D3D\D3DXMesh.cpp" />
+    <ClCompile Include="..\D3D\DXFront.cpp" />
+    <ClCompile Include="..\D3D\Particle.cpp" />
     <ClCompile Include="..\D3D\SkyBox.cpp" />
     <ClCompile Include="..\D3D\Terrain.cpp" />
     <ClCompile Include="..\DxGlobal\DxGlobal.cpp" />

@@ -3,6 +3,7 @@
 #include <d3dx9.h>
 #include "../D3D/D3DUtil.h"
 #include "../CommenCode/InPut/DXInPutManager.h"
+#include "../D3D/RunTimeInfo.h"
 
 enum CONSOL_COLOR
 {
@@ -11,6 +12,8 @@ enum CONSOL_COLOR
 	CC_BLUE,
 	CC_WHITE
 };
+
+extern RunTimeInfo grunTimeInfo;
 
 
 void InitGlobal(HWND hwnd,unsigned int width,unsigned int hight);

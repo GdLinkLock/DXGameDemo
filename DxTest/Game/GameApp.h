@@ -11,6 +11,12 @@
 #include "../camera/camera.h"
 #include "../D3D/SkyBox.h"
 #include "../D3D/Terrain.h"
+#include "../D3D/DXFront.h"
+#include "GlobalConfig.h"
+#include "../d3d/Particle.h"
+#include "../D3D/RenderInfo.h"
+
+
 #define  WINDOW_WIDTH 1024
 #define  WINDOW_HIGHT 768
 
@@ -24,9 +30,8 @@ public:
 	std::tr1::shared_ptr<SkyBox>  m_SkyBox;
 	std::tr1::shared_ptr<Terrian> m_Terrain;
 	D3DLIGHT9 light;
-	//floor
-	IDirect3DTexture9* mFloorTex;
-	IDirect3DVertexBuffer9* mFloorVB;
+	std::tr1::shared_ptr<DXText> m_Text;
+	std::tr1::shared_ptr<ParticleBase> m_Snow;
 
 	//----------------------------------------------------
 public:
@@ -37,7 +42,10 @@ public:
 public:
 	TestApp(const char* name,unsigned int width,unsigned int hight,unsigned int left,unsigned int top):DxAppBase(name,width,hight,left,top)
 	{
-
+		m_RenderInfo.width=width;
+		m_RenderInfo.height=hight;
+		m_RenderInfo.bwindowed=false;
+		m_RenderInfo.hwnd=GetWnd()->GetHwnd();
 	}
 	~TestApp()
 	{
@@ -49,6 +57,7 @@ public:
 public:
 	void InitApp();
 
+	int OnWndSize(DxSizeEvent& e);
 
 	void ShutDownApp()
 	{
@@ -57,4 +66,22 @@ public:
 
 	void Render(float timeDelta);
 	void Update(float interval);
+
+private:
+	void OnReset(HRESULT& hr);
+	void RenderTextHelp(float timedelta);
+
+	RenderInfo m_RenderInfo;
+public:
+	void SetRenderInfo(RenderInfo info)
+	{
+		m_RenderInfo.backFMT=info.backFMT;
+		m_RenderInfo.bwindowed=info.bwindowed;
+		m_RenderInfo.height=info.height;
+		m_RenderInfo.hwnd=info.hwnd;
+		m_RenderInfo.width=info.width;
+		m_RenderInfo.zFMT=info.zFMT;
+	};
+	RenderInfo GetRenderInfo(){return m_RenderInfo;}
+
 };

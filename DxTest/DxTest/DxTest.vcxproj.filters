@@ -34,6 +34,9 @@
     <Filter Include="源文件\math">
       <UniqueIdentifier>{3eaa857d-f522-4d24-8073-b342c7351956}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Global">
+      <UniqueIdentifier>{e3303e66-955e-4afe-8f16-6da2f057c0e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -59,9 +62,6 @@
     </ClInclude>
     <ClInclude Include="..\Log\ErrorInfo.h">
       <Filter>源文件\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\DxGlobal\DxGlobal.h">
-      <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="..\camera\CamaraBase.h">
       <Filter>源文件\Camera</Filter>
@@ -90,6 +90,24 @@
     <ClInclude Include="..\Game\GameApp.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\D3D\DXFront.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\Particle.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DxGlobal\DxGlobal.h">
+      <Filter>源文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AppBase\GlobalConfig.h">
+      <Filter>源文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\RenderInfo.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\D3D\RunTimeInfo.h">
+      <Filter>源文件\DX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AppBase\DxWindown.cpp">
@@ -109,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="..\Log\ErrorInfo.cpp">
       <Filter>源文件\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\DxGlobal\DxGlobal.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\camera\CamaraBase.cpp">
       <Filter>源文件\Camera</Filter>
@@ -136,6 +151,18 @@
     </ClCompile>
     <ClCompile Include="..\Game\GameApp.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\DXFront.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\D3D\Particle.cpp">
+      <Filter>源文件\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DxGlobal\DxGlobal.cpp">
+      <Filter>源文件\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AppBase\GlobalConfig.cpp">
+      <Filter>源文件\Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "DxGlobal.h"
 #include <Windows.h>
-
+#include "../D3D/RunTimeInfo.h"
 
 IDirect3DDevice9* gpDevice=0;
 HANDLE gHandle=0;
@@ -9,15 +9,19 @@ DXInputManager* gpInputManger;
 DWORD gLastTime=0;
 DWORD gFrameTime=0;
 
+
+RunTimeInfo grunTimeInfo;
+
 void InitGlobal(HWND hwnd,unsigned int width,unsigned int hight)
 {
 	static bool bInited=false;
+	grunTimeInfo.Reset();
 	if (!bInited)
 	{
 		bInited=true;
 		D3D::InitD3D(hwnd,width,hight,true,D3DDEVTYPE_HAL,&gpDevice);
 
-		::AllocConsole();
+		//::AllocConsole();
 		gHandle=::GetStdHandle(STD_OUTPUT_HANDLE);
 
 		if (!gpInputManger)

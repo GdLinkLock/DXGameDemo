@@ -1,6 +1,7 @@
 #include "SkyBox.h"
 #include "../Log/ErrorInfo.h"
 #include "D3DUtil.h"
+#include "../DxGlobal/DxGlobal.h"
 
 SkyBox::SkyBox(IDirect3DDevice9* device):m_pDevice(device),m_pVB(0)
 {
@@ -26,7 +27,7 @@ bool SkyBox::InitSkyBox(float length)
 	m_Length=length;
 	//创建顶点缓存
 	m_pDevice->CreateVertexBuffer(20*sizeof(tSkyBoxVertex),0,tSkyBoxVertex::FVF,D3DPOOL_MANAGED,&m_pVB,0);
-
+	grunTimeInfo.vbSize += 20*sizeof(tSkyBoxVertex);
 	tSkyBoxVertex vertex[]=
 	{
 		//前面的四个顶点
@@ -109,5 +110,9 @@ void SkyBox::RenderSkyBox()
 	{
 		m_pDevice->SetTexture(0,m_TexArray[i]);
 		m_pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP,i*4,2);
+		grunTimeInfo.fTriangleNum += 2;
+		grunTimeInfo.aTriangleNum+=2;
+		grunTimeInfo.aDrawCoreNum++;
+		grunTimeInfo.fDrawCoreNum++;
 	}
 }

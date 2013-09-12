@@ -182,3 +182,48 @@ D3DLIGHT9 D3D::InitSpotLight(D3DXVECTOR3* position, D3DXVECTOR3* direction, D3DX
  {
 	 return a - (a*t) + (b*t);
  }
+
+ float D3D::GetFps(float delta)
+ {
+	 static float fps=0;
+	 static float escape=0;
+	 static int frame=0;
+
+	 frame++;
+	 escape +=delta*0.001;
+	 if (escape >= 1.0)
+	 {
+		 fps=(float)frame/escape;
+		 frame=0;
+		 escape=0;
+	 }
+	 return fps;
+ }
+
+ DWORD D3D::F2Dw(float fval)
+ {
+	 return *(DWORD*)(&fval);
+ }
+
+ float D3D::GetRandomFloat(float min,float max)
+ {
+	 if (min > max)
+		return min;
+	 return ((float)rand()/(float)RAND_MAX)*(max -min)+ min;
+ }
+
+ int D3D::GetRandomInt(int min,int max)
+ {
+	 if (min > max)
+		return min;
+	 return rand()%(max-min+1) + min;
+ }
+
+ D3DXVECTOR3 D3D::GetRandomVec3(D3DXVECTOR3 min,D3DXVECTOR3 max)
+ {
+	 D3DXVECTOR3 vec3;
+	 vec3.x=D3D::GetRandomFloat(min.x,max.x);
+	 vec3.y=D3D::GetRandomFloat(min.y,max.y);
+	 vec3.z=D3D::GetRandomFloat(min.z,max.z);
+	 return vec3;
+ }
