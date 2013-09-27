@@ -4,8 +4,8 @@
 void TestApp::InitCamera()
 {
 	m_FPSCamera=std::make_shared<FPSCamera>();
-	m_FPSCamera->SetPos(D3DXVECTOR3(0.0f, 300.0f, -800.0f));  //设置摄像机所在的位置
-	//m_FPSCamera->SetLookAt(D3DXVECTOR3(0.0f, 0.0f, 0.0f));  //设置目标观察点所在的位置
+	m_FPSCamera->SetPos(D3DXVECTOR3(0.0f, 5.0, -8.0f));  //设置摄像机所在的位置
+	m_FPSCamera->SetLookAt(D3DXVECTOR3(0.0f, 0.0f, 0.0f));  //设置目标观察点所在的位置
 
 	m_pWnd->RigisterMouseRightDown(m_FPSCamera->GetMouseRightDownCallBack());
 	m_pWnd->RigisterMouseRightUp(m_FPSCamera->GetMouseRightUpCallBack());
@@ -59,33 +59,33 @@ void TestApp::UpdateCamera(float interval)
 		WndSizeCallBack wcb=std::tr1::bind(&TestApp::OnWndSize,this,std::placeholders::_1);
 		m_pWnd->RigesterWndSizeEvent(wcb);
 		//==============================================================================
-		
-		//snow
-		m_Snow=std::make_shared<SnowParticle>(Device,8000);
-		m_Snow->InitParticle("snow1.jpg");
-		
-		m_Text=std::make_shared<DXText>(Device);
+	   //m_Model=SceneManager::Instance()->LoadModelFromFile("./default/default.ase");
+		m_Model=SceneManager::Instance()->LoadModelFromFile("4560003.ase");
+		//snowG:\T\env\resources\art\stage\winnower\model
+	//	m_Snow=std::make_shared<SnowParticle>(Device,8000);
+	//	m_Snow->InitParticle("snow1.jpg");
+		//m_Text=std::make_shared<DXText>(Device);
 
-		m_Terrain=std::make_shared<Terrian>(Device);
-		m_Terrain->LoadTerrainFromFile("heighmap.raw","terrain_grass.jpg");
-		m_Terrain->InitTerrain(300,300, 20.0f, 0.3f);
+	//	m_Terrain=std::make_shared<Terrian>(Device);
+//		m_Terrain->LoadTerrainFromFile("heighmap.raw","terrain_grass.jpg");
+//		m_Terrain->InitTerrain(300,300, 20.0f, 0.3f);
 
-		m_DXMesh=std::make_shared<D3DXMesh>();
-		m_DXMesh->CreateMesh(Device,"castle400.X");
-		float hCastle=m_Terrain->GetHeight(300,500);
-		m_DXMesh->SetPosition(D3DXVECTOR3(-100,450+hCastle,600));
-
-
-		m_MeshTank=std::make_shared<D3DXMesh>();
-		m_MeshTank->CreateMesh(Device,"tank_gudao120.x");
-		float hTank=m_Terrain->GetHeight(300,500);
-		m_MeshTank->SetPosition(D3DXVECTOR3(0,hTank,0));
+	//	m_DXMesh=std::make_shared<D3DXMesh>();
+	//	m_DXMesh->CreateMesh(Device,"castle400.X");
+//		float hCastle=m_Terrain->GetHeight(300,500);
+//		m_DXMesh->SetPosition(D3DXVECTOR3(-100,450+hCastle,600));
 
 
-		m_MeshTree=std::make_shared<D3DXMesh>();
-		m_MeshTree->CreateMesh(Device,"meizhouyu80.x");
-		float hTree=m_Terrain->GetHeight(300,500);
-		m_MeshTree->SetPosition(D3DXVECTOR3(-100,hTree,0));
+	//	m_MeshTank=std::make_shared<D3DXMesh>();
+	//	m_MeshTank->CreateMesh(Device,"tank_gudao120.x");
+	//	float hTank=m_Terrain->GetHeight(300,500);
+	//	m_MeshTank->SetPosition(D3DXVECTOR3(0,hTank,0));
+
+
+// 		m_MeshTree=std::make_shared<D3DXMesh>();
+// 		m_MeshTree->CreateMesh(Device,"meizhouyu80.x");
+// 		float hTree=m_Terrain->GetHeight(300,500);
+// 		m_MeshTree->SetPosition(D3DXVECTOR3(-100,hTree,0));
 
 // 		m_SkyBox=std::make_shared<SkyBox>(Device);
 // 		m_SkyBox->LoadSkyTextureFromFile("frontsnow1.jpg",
@@ -96,12 +96,19 @@ void TestApp::UpdateCamera(float interval)
 // 		m_SkyBox->InitSkyBox(50000);
 
 
-		D3DXVECTOR3 dir(1.0f, -1.0f, 1.0f);
-		D3DXCOLOR col(1.0f, 1.0f, 1.0f, 1.0f);
-		light = D3D::InitDirectionalLight(&dir, &col);
+ 		D3DXVECTOR3 dir(1.0f, -1.0f, 1.0f);
+ 		D3DXCOLOR col(1.0f, 1.0f, 1.0f, 1.0f);
+ 		light = D3D::InitDirectionalLight(&dir, &col);
+// 	   D3DLIGHT9 light;
+// 	   ::ZeroMemory(&light, sizeof(light));
+// 	   light.Type      = D3DLIGHT_DIRECTIONAL;
+// 	   light.Ambient   = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+// 	   light.Diffuse   = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+// 	   light.Specular  = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+// 	   light.Direction = D3DXVECTOR3(1.0f, -1.0f, 0.0f);
+	   Device->SetLight(0, &light);
+	   Device->LightEnable(0, true);
 
-		Device->SetLight(0, &light);
-		Device->LightEnable(0, true);
 		Device->SetRenderState(D3DRS_NORMALIZENORMALS, true);
 		Device->SetRenderState(D3DRS_SPECULARENABLE, true);
 
@@ -120,8 +127,8 @@ void TestApp::UpdateCamera(float interval)
 		m_Text->PushText(0,0,clor,"FPS:%.2f",fps);
 		m_Text->PushText(0,18,clor,"本帧三角形数量：%d",grunTimeInfo.fTriangleNum);
 		m_Text->PushText(0,36,clor,"总的三角形数量:%d",grunTimeInfo.aTriangleNum);
-		m_Text->PushText(0,54,clor,"本帧drawcore：%d",grunTimeInfo.fDrawCoreNum);
-		m_Text->PushText(0,72,clor,"总的drawcore:%d",grunTimeInfo.aDrawCoreNum);
+		m_Text->PushText(0,54,clor,"本帧drawcall：%d",grunTimeInfo.fDrawCoreNum);
+		m_Text->PushText(0,72,clor,"总的drawcall:%d",grunTimeInfo.aDrawCoreNum);
 		m_Text->RenderText();
 	}
 
@@ -161,17 +168,15 @@ void TestApp::UpdateCamera(float interval)
 		Device->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,0x0000000, 1.0f, 0);
 		Device->BeginScene();
 
-		m_DXMesh->DrawMesh(Device);
-		m_MeshTank->DrawMesh(Device);
-		m_MeshTree->DrawMesh(Device);
+// 		m_DXMesh->DrawMesh(Device);
+// 		m_MeshTank->DrawMesh(Device);
+// 		m_MeshTree->DrawMesh(Device);
+	//	m_Terrain->RenderTerrain();
 
-
-		m_Terrain->RenderTerrain();
-		
 
 		//snow
-		m_Snow->UpdataParticle(timeDelta);
-		m_Snow->RenderParticle();
+// 		m_Snow->UpdataParticle(timeDelta);
+// 		m_Snow->RenderParticle();
 
 
 		//绘制天空
@@ -182,9 +187,11 @@ void TestApp::UpdateCamera(float interval)
 		//m_SkyBox->SetMatWorld(matSky);
 		//m_SkyBox->RenderSkyBox();
 
-		RenderTextHelp(timeDelta);
-
+		m_Model->Render();
+	//	mesh.get()->Draw();
+		//RenderTextHelp(timeDelta);
 		Device->EndScene();
+
 		hr = Device->Present(NULL, NULL, NULL, NULL);
 		if(hr == D3DERR_DEVICELOST)
 		{
@@ -201,7 +208,12 @@ void TestApp::UpdateCamera(float interval)
 		DXInputManager* inputMng=GetGlobalInputManager();
 		static float posX=0,posY=0,posZ=0;
 		float delta=interval* 0.1f;
-
+		static float angle=0;
+		angle += interval*0.001;
+	//	if (inputMng->IsKeyDown(VK_LEFT))
+	//	{
+		//	m_Model->SetYRoation(angle);
+//		}
 
 		if (inputMng->IsKeyDown('A'))
 		{
@@ -291,8 +303,8 @@ void TestApp::UpdateCamera(float interval)
 	{
 		IDirect3DDevice9* Device=GetGlobalDevice();
 		//on lost
-		m_Snow->OnLostDevice();
-		m_Text->OnLostDevice();
+	//	m_Snow->OnLostDevice();
+		//m_Text->OnLostDevice();
 
 		D3DPRESENT_PARAMETERS d3dpp;
 		d3dpp.BackBufferWidth=m_RenderInfo.width;
@@ -353,6 +365,6 @@ void TestApp::UpdateCamera(float interval)
 		m_FPSCamera->SetProjMatrix(Device);
 
 		//on reset
-		m_Snow->OnResetDevice();
-		m_Text->OnResetDecive();
+		//m_Snow->OnResetDevice();
+		//m_Text->OnResetDecive();
 	}

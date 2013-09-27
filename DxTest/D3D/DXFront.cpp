@@ -6,7 +6,7 @@ DXText::DXText(IDirect3DDevice9* pDevice):m_pDevice(pDevice)
 {
 	m_pFont=0;
 	HRESULT hr;
-	hr=D3DXCreateFont(m_pDevice,15,10,FW_BOLD,1,FALSE,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,DEFAULT_QUALITY,
+	hr=D3DXCreateFont(m_pDevice,15,12,FW_BOLD,1,FALSE,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,DEFAULT_QUALITY,
 						DEFAULT_PITCH|FF_DONTCARE,"The Times NewMan",&m_pFont);
 	if (FAILED(hr))
 	{

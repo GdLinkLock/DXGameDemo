@@ -1,5 +1,5 @@
 /*-========================================================================-_
- |                               - XACT3D3 -                                |
+ |                                - XACT3D -                                |
  |        Copyright (c) Microsoft Corporation.  All rights reserved.        |
  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
  |VERSION:  0.1                         MODEL:   Unmanaged User-mode        |
@@ -13,9 +13,8 @@
     1.  See X3DAudio.h for information regarding X3DAudio types.            */
 
 
-#ifndef __XACT3D3_H__
-#define __XACT3D3_H__
-
+#ifndef __XACT3D_H__
+#define __XACT3D_H__
 //--------------<D-E-F-I-N-I-T-I-O-N-S>-------------------------------------//
     #include <x3daudio.h>
     #include <xact3.h>
@@ -122,7 +121,7 @@
     // RETURN VALUE:
     //  HResult error code
     ////
-    EXTERN_C HRESULT inline XACT3DInitialize (__in IXACT3Engine* pEngine, __in X3DAUDIO_HANDLE X3DInstance)
+    EXTERN_C HRESULT inline XACT3DInitialize (IXACT3Engine* pEngine, X3DAUDIO_HANDLE X3DInstance)
     {
         HRESULT hr = S_OK;
         if (pEngine == NULL) {
@@ -191,7 +190,7 @@
     // RETURN VALUE:
     //  HResult error code
     ////
-    EXTERN_C HRESULT inline XACT3DCalculate (__in X3DAUDIO_HANDLE X3DInstance, __in const X3DAUDIO_LISTENER* pListener, __inout X3DAUDIO_EMITTER* pEmitter, __inout X3DAUDIO_DSP_SETTINGS* pDSPSettings)
+    EXTERN_C HRESULT inline XACT3DCalculate (X3DAUDIO_HANDLE X3DInstance, const X3DAUDIO_LISTENER* pListener, X3DAUDIO_EMITTER* pEmitter, X3DAUDIO_DSP_SETTINGS* pDSPSettings)
     {
         HRESULT hr = S_OK;
         if (pListener == NULL || pEmitter == NULL || pDSPSettings == NULL) {
@@ -242,7 +241,7 @@
     // RETURN VALUE:
     //  HResult error code
     ////
-    EXTERN_C HRESULT inline XACT3DApply (__in const X3DAUDIO_DSP_SETTINGS* pDSPSettings, __in IXACT3Cue* pCue)
+    EXTERN_C HRESULT inline XACT3DApply (X3DAUDIO_DSP_SETTINGS* pDSPSettings, IXACT3Cue* pCue)
     {
         HRESULT hr = S_OK;
         if (pDSPSettings == NULL || pCue == NULL) {
@@ -270,6 +269,5 @@
 
 
     #pragma warning(pop)
-
-#endif // __XACT3D3_H__
+#endif // __XACT3D_H__
 //---------------------------------<-EOF->----------------------------------//

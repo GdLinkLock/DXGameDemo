@@ -31,11 +31,20 @@
     <Filter Include="源文件\Util">
       <UniqueIdentifier>{9e9a1fbb-84ee-4a1f-9ea1-47bdfde46e1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\math">
-      <UniqueIdentifier>{3eaa857d-f522-4d24-8073-b342c7351956}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\Global">
       <UniqueIdentifier>{e3303e66-955e-4afe-8f16-6da2f057c0e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RendSystem">
+      <UniqueIdentifier>{254a2cf7-106a-4278-9053-244ca686fd1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{4e2595bb-c546-49b7-b409-da073ad7e5b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{3eaa857d-f522-4d24-8073-b342c7351956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl">
+      <UniqueIdentifier>{a5d08ef8-bcc6-4394-a5f7-98a7c16f9b3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +117,138 @@
     <ClInclude Include="..\D3D\RunTimeInfo.h">
       <Filter>源文件\DX</Filter>
     </ClInclude>
+    <ClInclude Include="..\NV\include\nv_util\NV_ASE.H">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NV\include\glh\glh_linear.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\STLDefine.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\Heap.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\shared_pointer.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\simple_profile.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\Str.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Angles.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\cpuid.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\IDLIB.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Math.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Matrix.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Plane.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Quat.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Random.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Rotation.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_3DNow.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_Generic.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_MMX.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\math\Vector.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\geometry\DrawVert.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\geometry\JointTransform.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommenCode\idMath\containers\BTree.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\Mesh.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\Model.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\D3DIndexBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\D3dVertexBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\HardWareIndexBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\HardWareVerteBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\Material.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\Resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\engine_interface.h">
+      <Filter>Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Impl\IStaticModelImpl.h">
+      <Filter>Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Impl\IRenderImpl.h">
+      <Filter>Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\SceneManager.h">
+      <Filter>Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\GeometryResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\GeometryProcessor.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\include\NvAseUtil.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\D3DDefine.h">
+      <Filter>RendSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Head.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AppBase\DxWindown.cpp">
@@ -163,6 +304,87 @@
     </ClCompile>
     <ClCompile Include="..\AppBase\GlobalConfig.cpp">
       <Filter>源文件\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NV\nv_ase.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\Heap.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\Str.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Angles.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\cpuid.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\IDLIB.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Math.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Matrix.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Plane.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Quat.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Rotation.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_3DNow.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_Generic.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_MMX.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\math\Vector.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\geometry\DrawVert.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommenCode\idMath\geometry\JointTransform.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\SceneManager.cpp">
+      <Filter>Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Impl\IRenderImpl.cpp">
+      <Filter>Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\src\GeometryResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\src\GeometryProcessor.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\src\NvAseUtil.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\src\Mesh.cpp">
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ void InitGlobal(HWND hwnd,unsigned int width,unsigned int hight)
 		bInited=true;
 		D3D::InitD3D(hwnd,width,hight,true,D3DDEVTYPE_HAL,&gpDevice);
 
-		//::AllocConsole();
+		::AllocConsole();
 		gHandle=::GetStdHandle(STD_OUTPUT_HANDLE);
 
 		if (!gpInputManger)

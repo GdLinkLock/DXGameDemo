@@ -11,6 +11,13 @@
 
 #include <windows.h>      // windows stuff
 
+#ifdef _WIN32
+#define COM_NO_WINDOWS_H
+#include <objbase.h>
+#else
+#endif
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif

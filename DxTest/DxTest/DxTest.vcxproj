@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -45,18 +45,21 @@
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>..\..\bin</OutDir>
+    <IntDir>..\..\main\inter</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>..\..\main\inter</IntDir>
+    <OutDir>..\..\bin</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\AppBase;.\;../DXSDK/Include;..\;../DxGlobal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NV\include\nv_util;..\AppBase;./;../DXSDK/Include;../DxGlobal;..\CommenCode\idMath;..\Engine\src;..\Engine\include;..\Engine\impl;..\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,6 +95,30 @@
     <ClInclude Include="..\AppBase\Win32MsgBox.h" />
     <ClInclude Include="..\camera\CamaraBase.h" />
     <ClInclude Include="..\camera\FPSCamera.h" />
+    <ClInclude Include="..\CommenCode\idMath\containers\BTree.h" />
+    <ClInclude Include="..\CommenCode\idMath\geometry\DrawVert.h" />
+    <ClInclude Include="..\CommenCode\idMath\geometry\JointTransform.h" />
+    <ClInclude Include="..\CommenCode\idMath\Heap.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Angles.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\cpuid.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\IDLIB.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Math.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Matrix.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Plane.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Quat.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Random.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Rotation.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_3DNow.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_Generic.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_MMX.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE2.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Simd_SSE3.h" />
+    <ClInclude Include="..\CommenCode\idMath\math\Vector.h" />
+    <ClInclude Include="..\CommenCode\idMath\shared_pointer.h" />
+    <ClInclude Include="..\CommenCode\idMath\simple_profile.h" />
+    <ClInclude Include="..\CommenCode\idMath\Str.h" />
     <ClInclude Include="..\CommenCode\InPut\DXInPutManager.h" />
     <ClInclude Include="..\CommenCode\Util\FileOperation.h" />
     <ClInclude Include="..\D3D\D3DUtil.h" />
@@ -103,8 +130,28 @@
     <ClInclude Include="..\D3D\SkyBox.h" />
     <ClInclude Include="..\D3D\Terrain.h" />
     <ClInclude Include="..\DxGlobal\DxGlobal.h" />
+    <ClInclude Include="..\Engine\D3DDefine.h" />
+    <ClInclude Include="..\Engine\engine_interface.h" />
+    <ClInclude Include="..\Engine\Head.h" />
+    <ClInclude Include="..\Engine\Impl\IRenderImpl.h" />
+    <ClInclude Include="..\Engine\Impl\IStaticModelImpl.h" />
+    <ClInclude Include="..\Engine\include\D3DIndexBuffer.h" />
+    <ClInclude Include="..\Engine\include\D3dVertexBuffer.h" />
+    <ClInclude Include="..\Engine\include\GeometryProcessor.h" />
+    <ClInclude Include="..\Engine\include\GeometryResource.h" />
+    <ClInclude Include="..\Engine\include\HardWareIndexBuffer.h" />
+    <ClInclude Include="..\Engine\include\HardWareVerteBuffer.h" />
+    <ClInclude Include="..\Engine\include\Material.h" />
+    <ClInclude Include="..\Engine\include\Mesh.h" />
+    <ClInclude Include="..\Engine\include\Model.h" />
+    <ClInclude Include="..\Engine\include\NvAseUtil.h" />
+    <ClInclude Include="..\Engine\include\Resource.h" />
+    <ClInclude Include="..\Engine\include\STLDefine.h" />
+    <ClInclude Include="..\Engine\SceneManager.h" />
     <ClInclude Include="..\Game\GameApp.h" />
     <ClInclude Include="..\Log\ErrorInfo.h" />
+    <ClInclude Include="..\NV\include\glh\glh_linear.h" />
+    <ClInclude Include="..\NV\include\nv_util\NV_ASE.H" />
     <ClInclude Include="DXdefine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -116,6 +163,26 @@
     <ClCompile Include="..\AppBase\Win32MsgBox.cpp" />
     <ClCompile Include="..\camera\CamaraBase.cpp" />
     <ClCompile Include="..\camera\FPSCamera.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\geometry\DrawVert.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\geometry\JointTransform.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\Heap.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Angles.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\cpuid.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\IDLIB.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Math.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Matrix.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Plane.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Quat.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Rotation.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_3DNow.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_Generic.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_MMX.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE2.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Simd_SSE3.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\math\Vector.cpp" />
+    <ClCompile Include="..\CommenCode\idMath\Str.cpp" />
     <ClCompile Include="..\CommenCode\InPut\DXInPutManager.cpp" />
     <ClCompile Include="..\CommenCode\Util\FileOperation.cpp" />
     <ClCompile Include="..\D3D\D3DUitil.cpp" />
@@ -125,8 +192,15 @@
     <ClCompile Include="..\D3D\SkyBox.cpp" />
     <ClCompile Include="..\D3D\Terrain.cpp" />
     <ClCompile Include="..\DxGlobal\DxGlobal.cpp" />
+    <ClCompile Include="..\Engine\Impl\IRenderImpl.cpp" />
+    <ClCompile Include="..\Engine\SceneManager.cpp" />
+    <ClCompile Include="..\Engine\src\GeometryProcessor.cpp" />
+    <ClCompile Include="..\Engine\src\GeometryResource.cpp" />
+    <ClCompile Include="..\Engine\src\Mesh.cpp" />
+    <ClCompile Include="..\Engine\src\NvAseUtil.cpp" />
     <ClCompile Include="..\Game\GameApp.cpp" />
     <ClCompile Include="..\Log\ErrorInfo.cpp" />
+    <ClCompile Include="..\NV\nv_ase.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

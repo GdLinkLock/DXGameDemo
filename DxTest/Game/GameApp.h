@@ -15,10 +15,11 @@
 #include "GlobalConfig.h"
 #include "../d3d/Particle.h"
 #include "../D3D/RenderInfo.h"
+#include "Model.h"
+#include "SceneManager.h"
 
-
-#define  WINDOW_WIDTH 1024
-#define  WINDOW_HIGHT 768
+#define  WINDOW_WIDTH 640
+#define  WINDOW_HIGHT 480
 
 
 class TestApp:public DxAppBase
@@ -32,7 +33,7 @@ public:
 	D3DLIGHT9 light;
 	std::tr1::shared_ptr<DXText> m_Text;
 	std::tr1::shared_ptr<ParticleBase> m_Snow;
-
+	Model*  m_Model;
 	//----------------------------------------------------
 public:
 	std::tr1::shared_ptr<FPSCamera> m_FPSCamera;

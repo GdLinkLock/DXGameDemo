@@ -29,40 +29,60 @@ bool D3D::InitD3D(  HWND hwnd, int width,int hight,bool windowed, D3DDEVTYPE d3d
 		vp=D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
 	//3.fill out D3DPRESENT_PARAMETERS structure
- 	D3DPRESENT_PARAMETERS d3dpp;
- 	d3dpp.BackBufferWidth=width;
- 	d3dpp.BackBufferHeight=hight;
- 	d3dpp.BackBufferCount=1;
- 	d3dpp.BackBufferFormat=D3DFMT_A8R8G8B8;
- 
- 	d3dpp.MultiSampleType=D3DMULTISAMPLE_NONE;
- 	d3dpp.MultiSampleQuality=0; //多重采样质量水平
- 
- 	d3dpp.SwapEffect=D3DSWAPEFFECT_DISCARD; //交换链中的缓存的页面置换方式
- 	d3dpp.hDeviceWindow=hwnd;
- 	d3dpp.Windowed=windowed;  //窗口模式
- 	d3dpp.EnableAutoDepthStencil=true;  //d3d自动创建并维护深度缓存或模板缓存
- 	d3dpp.AutoDepthStencilFormat=D3DFMT_D24S8;//深度缓存或模板缓存的像素格式
- 	d3dpp.Flags=0;
- 	d3dpp.FullScreen_RefreshRateInHz=D3DPRESENT_RATE_DEFAULT;//刷新频率
- 	d3dpp.PresentationInterval=D3DPRESENT_INTERVAL_IMMEDIATE;
-	
+	D3DPRESENT_PARAMETERS d3dpp;
+	d3dpp.BackBufferWidth=width;
+	d3dpp.BackBufferHeight=hight;
+	d3dpp.BackBufferCount=1;
+	d3dpp.BackBufferFormat=D3DFMT_A8R8G8B8;
+
+	d3dpp.MultiSampleType=D3DMULTISAMPLE_NONE;
+	d3dpp.MultiSampleQuality=0; //多重采样质量水平
+
+	d3dpp.SwapEffect=D3DSWAPEFFECT_DISCARD; //交换链中的缓存的页面置换方式
+	d3dpp.hDeviceWindow=hwnd;
+	d3dpp.Windowed=windowed;  //窗口模式
+	d3dpp.EnableAutoDepthStencil=true;  //d3d自动创建并维护深度缓存或模板缓存
+	d3dpp.AutoDepthStencilFormat=D3DFMT_D24S8;//深度缓存或模板缓存的像素格式
+	d3dpp.Flags=0;
+	d3dpp.FullScreen_RefreshRateInHz=D3DPRESENT_RATE_DEFAULT;//刷新频率
+	d3dpp.PresentationInterval=D3DPRESENT_INTERVAL_IMMEDIATE;
+	// Set default settings 
+	UINT AdapterToUse=D3DADAPTER_DEFAULT; 
+	D3DDEVTYPE DeviceType=D3DDEVTYPE_HAL;
+
+
+	// Look for 'NVIDIA PerfHUD' adapter 
+	// If it is present, override default settings 
+	for (UINT Adapter=0;Adapter<d3d9->GetAdapterCount();Adapter++) 
+	{ 
+		D3DADAPTER_IDENTIFIER9        Identifier; 
+		HRESULT                       Res; 
+		Res = d3d9->GetAdapterIdentifier(Adapter,0,&Identifier); 
+		if (strstr(Identifier.Description,"PerfHUD") != 0) 
+		{ 
+			AdapterToUse=Adapter; 
+			DeviceType=D3DDEVTYPE_REF; 
+			//DXWriteConsol(CC_BLUE,"perfhud");
+			break; 
+		} 
+	} 
+
 	//4.create the device
-	hr=d3d9->CreateDevice(D3DADAPTER_DEFAULT,
-							d3dType,
-							hwnd,
-							vp,
-							&d3dpp,
-							device);
+	hr=d3d9->CreateDevice(AdapterToUse,
+		DeviceType,
+		hwnd,
+		vp,
+		&d3dpp,
+		device);
 	if (FAILED(hr))
 	{
 		d3dpp.AutoDepthStencilFormat=D3DFMT_D16;
 		hr=d3d9->CreateDevice(D3DADAPTER_DEFAULT,
-								d3dType,
-								hwnd,
-								vp,
-								&d3dpp,
-								device);
+			d3dType,
+			hwnd,
+			vp,
+			&d3dpp,
+			device);
 		if (FAILED(hr))
 		{
 			d3d9->Release();

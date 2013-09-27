@@ -1,0 +1,34 @@
+<SHADERLIB NAME="default.xml">
+    <ARB13_PIPELINE>
+        <SHADER NAME="Default" SHADER_TYPE="common" Gloss="0.000000">
+            <HWSHADER RENDERENV="basic" HWSHADER_TYPE="vertex_color" CULLING="no" SHINESS=" 0.0">
+                <PASS BLEND="0 0 0" DEPTH="1 LEQUAL WRITE">
+                    <STAGE TEXENV_MODE="TEXENV_TEX_REPLACE" CONSTCOLORPARAM="0 0 0.500000 0.500000 0.500000 0.500000" TEXCOORD_GEN="TEXGEN_NONE" TEXTURE_TYPE="TEXTURE_2D">
+                        <TEXTURE DIRECTORY="./../Resources/Media/Shaders/default.jpg" TEXTUREPARAM="0 0 6" />
+                    </STAGE>
+                </PASS>
+            </HWSHADER>
+        </SHADER>
+    </ARB13_PIPELINE>
+    <ARB15_PIPELINE>
+        <SHADER NAME="Default" SHADER_TYPE="common" Gloss="0.000000">
+            <HWSHADER RENDERENV="basic" HWSHADER_TYPE="vertex_color" CULLING="no" SHINESS=" 0.0">
+                <PASS BLEND="0 0 0" DEPTH="1 LEQUAL WRITE">
+                    <STAGE TEXENV_MODE="TEXENV_TEX_REPLACE" CONSTCOLORPARAM="0 0 0.500000 0.500000 0.500000 0.500000" TEXCOORD_GEN="TEXGEN_NONE" TEXTURE_TYPE="TEXTURE_2D">
+                        <TEXTURE DIRECTORY="./../Resources/Media/Shaders/default.jpg" TEXTUREPARAM="0 0 6" />
+                    </STAGE>
+                </PASS>
+            </HWSHADER>
+        </SHADER>
+    </ARB15_PIPELINE>
+    <NV20_PIPELINE />
+    <SHADER NAME="Default" SHADER_TYPE="common" Gloss="0.000000">
+        <HWSHADER RENDERENV="basic" HWSHADER_TYPE="vertex_color" CULLING="no" SHINESS=" 0.0">
+            <PASS BLEND="0 0 0" DEPTH="1 LEQUAL WRITE">
+                <STAGE TEXENV_MODE="TEXENV_TEX_REPLACE" CONSTCOLORPARAM="0 0 0.500000 0.500000 0.500000 0.500000" TEXCOORD_GEN="TEXGEN_NONE" TEXTURE_TYPE="TEXTURE_2D">
+                    <TEXTURE DIRECTORY="./../Resources/Media/Shaders/default.jpg" TEXTUREPARAM="0 0 6" />
+                </STAGE>
+            </PASS>
+        </HWSHADER>
+    </SHADER>
+</SHADERLIB>

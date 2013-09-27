@@ -6,7 +6,7 @@ FPSCamera::FPSCamera()
 {
 	m_Pos   = D3DXVECTOR3(0.0f, 0.0f, -200.0f);
 	m_RightDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-	m_UpDir    = D3DXVECTOR3(0.0f, 50.0f, 0.0f);
+	m_UpDir    = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_ViewAtDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 	m_TargitPos=D3DXVECTOR3(0.0f,0.0f,0.0f);
 	m_bRightDown=false;
@@ -248,6 +248,6 @@ void FPSCamera::SetProjMatrix(IDirect3DDevice9* device)
 		D3DX_PI * 0.5f, // 90 - degree
 		(float)1024 / (float)768,
 		1.0f,
-		150000.0f);
+		1000.0f);
 	device->SetTransform(D3DTS_PROJECTION, &proj);
 }

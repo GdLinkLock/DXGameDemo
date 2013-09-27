@@ -1,0 +1,7 @@
+<H3DMaterialInstanceRoot>
+    <H3DMaterialInstance TemplateFile="..\resources\art\stage\template\DSN.tpl" MaterialName="candyhouse001_balloon001" Debug="NO_DEBUG">
+        <NODE_VAR varName="TextureSample2D_3_TexFileName" type="DT_STRING" value="..\resources\art\stage\candyhouse001\texture\candyhouse001_balloon001_d.tga" sem="texturePath" Node="TextureSample2D_3" />
+        <NODE_VAR varName="TextureSample2D_4_TexFileName" type="DT_STRING" value="..\resources\art\stage\candyhouse001\texture\candyhouse001_balloon001_s.tga" sem="texturePath" Node="TextureSample2D_4" />
+        <NODE_VAR varName="TextureSample2D_5_TexFileName" type="DT_STRING" value="..\resources\art\stage\candyhouse001\texture\candyhouse001_balloon001_n.tga" sem="texturePath" Node="TextureSample2D_5" />
+    </H3DMaterialInstance>
+</H3DMaterialInstanceRoot>

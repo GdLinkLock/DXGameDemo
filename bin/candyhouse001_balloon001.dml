@@ -1,0 +1,10 @@
+[SHADER]
+11111111
+[GEOMETRY MESH]
+..\resources\art\stage\candyhouse001\model\candyhouse001_balloon001.ase
+[NEW_SHADER]
+..\resources\art\stage\candyhouse001\model\candyhouse001_balloon001.mat
+[SubEntity]
+candyhouse001_balloon001
+..\resources\art\stage\candyhouse001\model\candyhouse001_balloon001.mat
+candyhouse001_balloon001

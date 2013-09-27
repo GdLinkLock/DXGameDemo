@@ -1,0 +1,43 @@
+<H3DMaterialInstanceRoot>
+    <H3DMaterialInstance TemplateFile="..\resources\art\role\template\X52_MT_shipin.tpl" MaterialName="4560034001">
+        <AutoLod1Param>
+            <fContrast value="1.000000" />
+            <fLightness value="1.200000" />
+            <fSpecStrength value="1.000000" />
+            <fSpecPower value="20.000000" />
+        </AutoLod1Param>
+        <CastShadow_Shader>
+            <CASTSHADOW_TECHNIQUE>
+                <Pass idx="0">
+                    <RenderState varName="CullMode" type="DT_STRING" value="None" sem="" />
+                </Pass>
+            </CASTSHADOW_TECHNIQUE>
+        </CastShadow_Shader>
+        <ForwardRenderingSM3_Shader>
+            <SHADING_TECHNIQUE>
+                <Pass idx="0">
+                    <RenderState varName="CullMode" type="DT_STRING" value="None" sem="" />
+                </Pass>
+            </SHADING_TECHNIQUE>
+        </ForwardRenderingSM3_Shader>
+        <Lpp_PreLight_Shader>
+            <LPP_PRELIGHT_TECHNIQUE>
+                <Pass idx="0">
+                    <RenderState varName="CullMode" type="DT_STRING" value="None" sem="" />
+                </Pass>
+            </LPP_PRELIGHT_TECHNIQUE>
+        </Lpp_PreLight_Shader>
+        <Lpp_Shading_Shader>
+            <LPP_SHADING_TECHNIQUE>
+                <Pass idx="0">
+                    <RenderState varName="CullMode" type="DT_STRING" value="None" sem="" />
+                </Pass>
+            </LPP_SHADING_TECHNIQUE>
+        </Lpp_Shading_Shader>
+        <NODE_VAR varName="TextureSample2D_3_TexFileName" type="DT_STRING" value="..\resources\art\role\link\shipin\4560034001\texture\4560034001_d.dds" sem="texturePath" Node="TextureSample2D_3" />
+        <NODE_VAR varName="TextureSample2D_4_TexFileName" type="DT_STRING" value="..\resources\art\role\link\shipin\4560034001\texture\4560034001_n.dds" sem="texturePath" Node="TextureSample2D_4" />
+        <NODE_VAR varName="Constant_5_R" type="DT_FLOAT" value="30" sem="" alias="SpecluarRange" Node="Constant_5" />
+        <NODE_VAR varName="TextureSample2D_6_TexFileName" type="DT_STRING" value="..\resources\art\role\link\shipin\4560034001\texture\4560034001_s.dds" sem="texturePath" Node="TextureSample2D_6" />
+        <NODE_VAR varName="Constant_7_R" type="DT_FLOAT" value="0.9997" sem="" alias="SpecluarIntensity" Node="Constant_7" />
+    </H3DMaterialInstance>
+</H3DMaterialInstanceRoot>
