@@ -4,7 +4,8 @@
 #include "../D3D/D3DUtil.h"
 #include "../CommenCode/InPut/DXInPutManager.h"
 #include "../D3D/RunTimeInfo.h"
-
+#define  WINDOW_WIDTH 640
+#define  WINDOW_HIGHT 480
 enum CONSOL_COLOR
 {
 	CC_RED,

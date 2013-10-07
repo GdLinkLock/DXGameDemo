@@ -44,7 +44,7 @@ private:
 
 	void RotationYAxis(float degree);
 	void RotationXAxis(float degree);
-	
+	void RotationZAxis(float degree);
 	//沿着三个方向移动
 	void MoveAlongRight(float delta);
 	void MoveALongUp(float delta);

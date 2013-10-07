@@ -4,7 +4,7 @@
 void TestApp::InitCamera()
 {
 	m_FPSCamera=std::make_shared<FPSCamera>();
-	m_FPSCamera->SetPos(D3DXVECTOR3(0.0f, 5.0, -8.0f));  //设置摄像机所在的位置
+	m_FPSCamera->SetPos(D3DXVECTOR3(0.0f, 2.0, -18.0f));  //设置摄像机所在的位置
 	m_FPSCamera->SetLookAt(D3DXVECTOR3(0.0f, 0.0f, 0.0f));  //设置目标观察点所在的位置
 
 	m_pWnd->RigisterMouseRightDown(m_FPSCamera->GetMouseRightDownCallBack());
@@ -29,9 +29,9 @@ void TestApp::UpdateCamera(float interval)
 		{
 		case VK_F1: //快速找到主角
 			{
-				D3DXVECTOR3 pos=m_DXMesh->GetPostion();
-				m_FPSCamera->SetPos(D3DXVECTOR3(pos.x,pos.y+300,pos.z-700));
-				m_FPSCamera->SetLookAt(pos);
+// 				D3DXVECTOR3 pos=m_DXMesh->GetPostion();
+// 				m_FPSCamera->SetPos(D3DXVECTOR3(pos.x,pos.y+300,pos.z-700));
+// 				m_FPSCamera->SetLookAt(pos);
 				break;
 			}
 		case VK_NUMPAD0:
@@ -60,11 +60,14 @@ void TestApp::UpdateCamera(float interval)
 		m_pWnd->RigesterWndSizeEvent(wcb);
 		//==============================================================================
 	   //m_Model=SceneManager::Instance()->LoadModelFromFile("./default/default.ase");
-		m_Model=SceneManager::Instance()->LoadModelFromFile("4560003.ase");
-		//snowG:\T\env\resources\art\stage\winnower\model
+		//m_Model=SceneManager::Instance()->LoadModelFromFile("4560003.ase");
+		//m_Model->LoadTexture("4560003001_D.dds");
+		m_Model=SceneManager::Instance()->LoadModelFromFile("./wall/palaceroom_wall001.ase");
+		m_Model->LoadTexture("./wall/palaceroom_wall001_d.dds");
+	//	m_Model->SetPosition(D3DXVECTOR3(0,0,0));
 	//	m_Snow=std::make_shared<SnowParticle>(Device,8000);
 	//	m_Snow->InitParticle("snow1.jpg");
-		//m_Text=std::make_shared<DXText>(Device);
+		m_Text=std::make_shared<DXText>(Device);
 
 	//	m_Terrain=std::make_shared<Terrian>(Device);
 //		m_Terrain->LoadTerrainFromFile("heighmap.raw","terrain_grass.jpg");
@@ -188,8 +191,7 @@ void TestApp::UpdateCamera(float interval)
 		//m_SkyBox->RenderSkyBox();
 
 		m_Model->Render();
-	//	mesh.get()->Draw();
-		//RenderTextHelp(timeDelta);
+		RenderTextHelp(timeDelta);
 		Device->EndScene();
 
 		hr = Device->Present(NULL, NULL, NULL, NULL);
@@ -209,77 +211,77 @@ void TestApp::UpdateCamera(float interval)
 		static float posX=0,posY=0,posZ=0;
 		float delta=interval* 0.1f;
 		static float angle=0;
-		angle += interval*0.001;
-	//	if (inputMng->IsKeyDown(VK_LEFT))
-	//	{
-		//	m_Model->SetYRoation(angle);
-//		}
+		angle +=0.001;
+		if (inputMng->IsKeyDown(VK_LEFT))
+		{
+			m_Model->SetYRoation(angle);
+		}
 
-		if (inputMng->IsKeyDown('A'))
-		{
-			
-			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
-			pos.x -= delta;
-			float height=m_Terrain->GetHeight(pos.x,pos.z);
-			pos.y = height;
-			m_MeshTank->SetPosition(pos);
-			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
-			CamPos.x -=delta;
-			CamPos.y=pos.y+300;
-			m_MeshTank->SetYRoation(D3DX_PI/2);
-			m_FPSCamera->SetPos(CamPos);
-			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
-			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
-			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
-		}
-		if (inputMng->IsKeyDown('D'))
-		{
-			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
-			pos.x += delta;
-			float height=m_Terrain->GetHeight(pos.x,pos.z);
-			pos.y = height;
-			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYRoation( -D3DX_PI/2);
-			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
-			CamPos.x +=delta;
-			CamPos.y=pos.y+300;
-			m_FPSCamera->SetPos(CamPos);
-			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
-			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
-			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
-		}
-		if (inputMng->IsKeyDown('W'))
-		{
-			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
-			pos.z += delta;
-			float height=m_Terrain->GetHeight(pos.x,pos.z);
-			pos.y = height;
-			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYRoation(D3DX_PI);
-			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
-			CamPos.z +=delta;
-			CamPos.y=pos.y+300;
-			m_FPSCamera->SetPos(CamPos);
-			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
-			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
-			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
-		}
-		if (inputMng->IsKeyDown('S'))
-		{
-			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
-			pos.z -= delta;
-			float height=m_Terrain->GetHeight(pos.x,pos.z);
-			pos.y = height;
-			m_MeshTank->SetPosition(pos);
-			m_MeshTank->SetYRoation(0);
-			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
-			CamPos.z -=delta;
-			CamPos.y=pos.y+300;
-			m_FPSCamera->SetPos(CamPos);
-			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
-			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
-			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
-		}
+// 		if (inputMng->IsKeyDown('A'))
+// 		{
+// 			
+// 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
+// 			pos.x -= delta;
+// 			float height=m_Terrain->GetHeight(pos.x,pos.z);
+// 			pos.y = height;
+// 			m_MeshTank->SetPosition(pos);
+// 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
+// 			CamPos.x -=delta;
+// 			CamPos.y=pos.y+300;
+// 			m_MeshTank->SetYRoation(D3DX_PI/2);
+// 			m_FPSCamera->SetPos(CamPos);
+// 			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
+// 			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
+// 			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
+// 		}
+// 		if (inputMng->IsKeyDown('D'))
+// 		{
+// 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
+// 			pos.x += delta;
+// 			float height=m_Terrain->GetHeight(pos.x,pos.z);
+// 			pos.y = height;
+// 			m_MeshTank->SetPosition(pos);
+// 			m_MeshTank->SetYRoation( -D3DX_PI/2);
+// 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
+// 			CamPos.x +=delta;
+// 			CamPos.y=pos.y+300;
+// 			m_FPSCamera->SetPos(CamPos);
+// 			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
+// 			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
+// 			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
+// 		}
+// 		if (inputMng->IsKeyDown('W'))
+// 		{
+// 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
+// 			pos.z += delta;
+// 			float height=m_Terrain->GetHeight(pos.x,pos.z);
+// 			pos.y = height;
+// 			m_MeshTank->SetPosition(pos);
+// 			m_MeshTank->SetYRoation(D3DX_PI);
+// 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
+// 			CamPos.z +=delta;
+// 			CamPos.y=pos.y+300;
+// 			m_FPSCamera->SetPos(CamPos);
+// 			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
+// 			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
+// 			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
+// 		}
+// 		if (inputMng->IsKeyDown('S'))
+// 		{
+// 			D3DXVECTOR3 pos=m_MeshTank->GetPostion();
+// 			pos.z -= delta;
+// 			float height=m_Terrain->GetHeight(pos.x,pos.z);
+// 			pos.y = height;
+// 			m_MeshTank->SetPosition(pos);
+// 			m_MeshTank->SetYRoation(0);
+// 			D3DXVECTOR3 CamPos=m_FPSCamera->GetPostion();
+// 			CamPos.z -=delta;
+// 			CamPos.y=pos.y+300;
+// 			m_FPSCamera->SetPos(CamPos);
+// 			m_FPSCamera->SetLookAt(m_MeshTank->GetPostion());
+// 			DXWriteConsol(CC_GREEN,"TankPos=(%f,%f,%f)",pos.x,pos.y,pos.z);
+// 			DXWriteConsol(CC_GREEN,"CamPos=(%f,%f,%f)",CamPos.x,CamPos.y,CamPos.z);
+// 		}
 		
 		
 	}
@@ -304,7 +306,7 @@ void TestApp::UpdateCamera(float interval)
 		IDirect3DDevice9* Device=GetGlobalDevice();
 		//on lost
 	//	m_Snow->OnLostDevice();
-		//m_Text->OnLostDevice();
+		m_Text->OnLostDevice();
 
 		D3DPRESENT_PARAMETERS d3dpp;
 		d3dpp.BackBufferWidth=m_RenderInfo.width;
@@ -366,5 +368,5 @@ void TestApp::UpdateCamera(float interval)
 
 		//on reset
 		//m_Snow->OnResetDevice();
-		//m_Text->OnResetDecive();
+		m_Text->OnResetDecive();
 	}

@@ -18,8 +18,7 @@
 #include "Model.h"
 #include "SceneManager.h"
 
-#define  WINDOW_WIDTH 640
-#define  WINDOW_HIGHT 480
+
 
 
 class TestApp:public DxAppBase

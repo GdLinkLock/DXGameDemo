@@ -501,7 +501,7 @@ int GeometryProcessor::Fill()
 					m_pGeometry->CreateMesh(meshDesc);
 
 					FillByTriangleList(m_pGeometry,curFaces,meshDesc);
-
+					ProcessLod(m_pGeometry,0,meshDesc);
 				}
 				else
 				{
@@ -598,61 +598,73 @@ void GeometryProcessor::FillByTriangleList(GeometryReource* pGeoComposor,tFaceBy
 	//index
 	uint32 bufferSize = meshDesc.m_vertCount;
 
-	uint32* pBuffer = GetuintBuffer(bufferSize);
+	uint32* pBuffer = new uint32[bufferSize]/*GetuintBuffer(bufferSize)*/;
 	for(uint32 i=0;i<bufferSize;++i)
 	{
 		pBuffer[i] = i;
 	}
 	//设置ib
+	pGeoComposor->GetMeshByName(meshDesc.m_meshName)->SetIndexData(pBuffer,bufferSize);
+	delete [] pBuffer;
+	pBuffer=0;
 
 	//设置VB,IB,NORMAL,TAN,UV,COLOR等
 	//开始组织数据.
+	tVertex* buffer=new tVertex[meshDesc.m_vertCount];
 	//pos
-	float* posBuffer = /*GetfBuffer(bufferSize)*/(float*)(new unsigned char[bufferSize*sizeof(float)]);
 	if(meshDesc.m_vertCount)
 	{
 		unsigned int bufferSize = meshDesc.m_vertCount*3;
+		float* posBuffer = (float*)(new  char[bufferSize*sizeof(float)]);
 		GetPosBuffer(&posBuffer,bufferSize,curFaces);
-	//	pGeoComposor->SetVertexComponentData((unsigned char*)posBuffer,bufferSize*sizeof(float),VCS_Position,VCT_FLOAT3,meshDesc);
+		for (int i=0;i<meshDesc.m_vertCount;i++)
+		{
+			buffer[i].x=posBuffer[i*3];
+			buffer[i].y=posBuffer[i*3+1];
+			buffer[i].z=posBuffer[i*3+2];
+			DXWriteConsol(CC_GREEN,"line=%d,%f,%f,%f",i,buffer[i].x,buffer[i].y,buffer[i].z);
+		}
+		delete  [] posBuffer;
 	}
 // 	nor
-// 		float* norBuffer = /*GetfBuffer(bufferSize)*/(float*)new unsigned char[bufferSize*sizeof(float)];
-// 		if(curFaces.m_pGeoObj->numn)
-// 		{
-// 			unsigned int bufferSize = meshDesc.m_vertCount*3;
-// 			GetNorBuffer(&norBuffer,bufferSize,curFaces);
-// 			//pGeoComposor->SetVertexComponentData((unsigned char*)norBuffer,bufferSize*sizeof(float),VCS_Normal,VCT_FLOAT3,meshDesc);
-// 			for (int i=0;i<meshDesc.m_vertCount;i++)
-// 			{
-// 				DXWriteConsol(CC_RED,"line=%d,%f,%f,%f",i,*(norBuffer+i*3),*(norBuffer+i*3+1),*(norBuffer+i*3+2));
-// 			}
-// 		}
-// 		
-// 		
+	
+		if(curFaces.m_pGeoObj->numn)
+		{
+			unsigned int bufferSize = meshDesc.m_vertCount*3;
+			float* norBuffer = (float*)new  char[bufferSize*sizeof(float)];
+			GetNorBuffer(&norBuffer,bufferSize,curFaces);
+			//pGeoComposor->SetVertexComponentData((unsigned char*)norBuffer,bufferSize*sizeof(float),VCS_Normal,VCT_FLOAT3,meshDesc);
+			for (int i=0;i<meshDesc.m_vertCount;i++)
+			{
+				buffer[i].n1=norBuffer[i*3];
+				buffer[i].n2=norBuffer[i*3+1];
+				buffer[i].n3=norBuffer[i*3+2];
+				DXWriteConsol(CC_RED,"line=%d,%f,%f,%f",i,*(norBuffer+i*3),*(norBuffer+i*3+1),*(norBuffer+i*3+2));
+			}
+			delete [] norBuffer;
+		}
+
 // 		//UV
-// 		float* uvBuffer =/* GetfBuffer(bufferSize)*/(float*)new unsigned char[bufferSize*sizeof(float)];
-// 		if (curFaces.m_pGeoObj->numtf && curFaces.m_pGeoObj->numtf==curFaces.m_pGeoObj->numf)
-// 		{
-// 			unsigned int bufferSize = meshDesc.m_vertCount*2;
-// 			if (curFaces.m_pGeoObj->t)
-// 			{
-// 				GetUVBuffer(uvBuffer,curFaces, curFaces.m_pGeoObj->t, curFaces.m_pGeoObj->tf);
-// 			//	pGeoComposor->SetVertexComponentData((unsigned char*)uvBuffer,bufferSize*sizeof(float),VCS_Texcoordinate0,VCT_FLOAT2,meshDesc);
-// 				for (int i=0;i<meshDesc.m_vertCount;i++)
-// 				{
-// 					DXWriteConsol(CC_BLUE,"line=%d,%f,%f",i,*(uvBuffer+i*2),*(uvBuffer+i*2+1));
-// 				}
-// 			}
-// 		}
-	tVertex buffer[72];
-	for (int i=0;i<meshDesc.m_vertCount;i++)
-	{
-		buffer[i]=tVertex(*(posBuffer+i*3),*(posBuffer+i*3+1),*(posBuffer+i*3+2)/*,*(uvBuffer+i*2),*(uvBuffer+i*2+1),*(norBuffer+i*3),*(norBuffer+i*3+1),*(norBuffer+i*3+2)*/);
-		//DXWriteConsol(CC_GREEN,"line=%d,%f,%f,%f,%f,%f,%f,%f,%f",i,*(vv+i*3),*(vv+i*3+1),*(vv+i*3+2),*(tt+i*3),*(tt+i*3+1),*(nn+i*3),*(nn+i*3+1),*(nn+i*3+2));
-	}
-	char* buf=new char[meshDesc.m_vertCount*sizeof(tVertex)];
-	m_pGeometry->GetMeshList().at(0)->SetData(buf,meshDesc.m_vertCount,"");
-	delete  [] posBuffer;
+		if (curFaces.m_pGeoObj->numtf && curFaces.m_pGeoObj->numtf==curFaces.m_pGeoObj->numf)
+		{
+			unsigned int bufferSize = meshDesc.m_vertCount*2;
+			float* uvBuffer =(float*)new  char[bufferSize*sizeof(float)];
+			if (curFaces.m_pGeoObj->t)
+			{
+				GetUVBuffer(uvBuffer,curFaces, curFaces.m_pGeoObj->t, curFaces.m_pGeoObj->tf);
+			//	pGeoComposor->SetVertexComponentData((unsigned char*)uvBuffer,bufferSize*sizeof(float),VCS_Texcoordinate0,VCT_FLOAT2,meshDesc);
+				for (int i=0;i<meshDesc.m_vertCount;i++)
+				{
+					buffer[i].u=uvBuffer[i*2];
+					buffer[i].v=uvBuffer[i*2+1];
+					DXWriteConsol(CC_BLUE,"line=%d,%f,%f",i,*(uvBuffer+i*2),*(uvBuffer+i*2+1));
+				}
+			}
+			delete [] uvBuffer;
+		}
+
+		pGeoComposor->GetMeshByName(meshDesc.m_meshName)->SetVertexData(buffer,meshDesc.m_vertCount);
+		delete [] buffer;
 
 }
 void GeometryProcessor::FillByStrip(GeometryReource* pGeoComposor,tFaceByMat& curFace,tMeshDesc& meshDesc)

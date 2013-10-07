@@ -21,7 +21,18 @@ public:
 	{
 		mMesh->SetYRotation(angle);
 	}
-
+	bool LoadTexture(const char* fn)
+	{
+		return mMesh->LoadTexture(fn);
+	}
+	void SetPosition(D3DXVECTOR3 pos)
+	{
+		mMesh->SetMatWorld(pos);
+	}
+	void SetMatWorld(D3DXVECTOR3 pos,float angle,float scale)
+	{
+		mMesh->SetMatWorld(pos,angle,scale);
+	}
 private:
 	std::string  mName;
 	GdMat4  mWorldMat;

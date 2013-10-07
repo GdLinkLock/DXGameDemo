@@ -91,9 +91,10 @@ int FPSCamera::OnMouseMove(const DxMouseEvent& e)
 	float degreeX=mouseDeltaX * 0.01f;
 	float degreeY=mouseDeltaY * 0.01f;
 	m_fYangle += degreeX;
+
+	RotationUp(degreeX*0.5);
+	RotationRight(degreeY*0.5);
 	
-	RotationUp(degreeX);
-	RotationRight(degreeY);
 
 	m_LastPosY=ptCurPos.y;
 	m_LastPosX=ptCurPos.x;
@@ -109,6 +110,13 @@ void FPSCamera::RotationYAxis(float degree)
 	D3DXVec3TransformCoord(&m_ViewAtDir, &m_ViewAtDir, &R);//让m_vLookVector向量绕m_vUpVector旋转fAngle个角度
 }
 
+void FPSCamera::RotationZAxis(float degree)
+{
+	D3DXMATRIX R;
+	D3DXMatrixRotationAxis(&R,&D3DXVECTOR3(0,0,1),degree);
+	D3DXVec3TransformCoord(&m_RightDir,&m_RightDir,&R);
+	D3DXVec3TransformCoord(&m_ViewAtDir,&m_ViewAtDir,&R);
+}
 void FPSCamera::RotationXAxis(float degree)
 {
 	D3DXMATRIX R;
@@ -226,8 +234,8 @@ void FPSCamera::RotationRight(float degree)
 void FPSCamera::RotationUp(float degree)
 {
 	D3DXMATRIX T;
-	//D3DXMatrixRotationAxis(&T,&m_UpDir,degree);
-	D3DXMatrixRotationY(&T,degree); //修改旋转轴，这里是Y轴，不能是updir，因为经过一些运动后updir可能不再是0.1.0
+	D3DXMatrixRotationAxis(&T,&D3DXVECTOR3(0,0,1),degree);
+	//D3DXMatrixRotationY(&T,degree); //修改旋转轴，这里是Y轴，不能是updir，因为经过一些运动后updir可能不再是0.1.0
 	D3DXVec3TransformCoord(&m_RightDir,&m_RightDir,&T);
 	D3DXVec3TransformCoord(&m_ViewAtDir,&m_ViewAtDir,&T);
 	m_TargitPos=m_ViewAtDir*D3DXVec3Length(&m_Pos);
@@ -238,6 +246,10 @@ void FPSCamera::SetViewMatrix(IDirect3DDevice9* device)
 	D3DXMATRIX V ;
 	this->GetViewMatrix(&V);
 	device->SetTransform(D3DTS_VIEW, &V);
+	//把取景变化的值分下来，分别给右相量，上向量，观察向量
+	m_RightDir=D3DXVECTOR3(V._11,V._12,V._13);
+	m_UpDir=D3DXVECTOR3(V._21,V._22,V._23);
+	m_ViewAtDir=D3DXVECTOR3(V._31,V._32,V._33);
 }
 
 void FPSCamera::SetProjMatrix(IDirect3DDevice9* device)
@@ -245,9 +257,9 @@ void FPSCamera::SetProjMatrix(IDirect3DDevice9* device)
 	D3DXMATRIX proj;
 	D3DXMatrixPerspectiveFovLH(
 		&proj,
-		D3DX_PI * 0.5f, // 90 - degree
-		(float)1024 / (float)768,
+		D3DX_PI/ 4.0f, // 90 - degree
+		(float)WINDOW_WIDTH/ (float)WINDOW_HIGHT,
 		1.0f,
-		1000.0f);
+		100000.0f);
 	device->SetTransform(D3DTS_PROJECTION, &proj);
 }
